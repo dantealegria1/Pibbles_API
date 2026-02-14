@@ -30,7 +30,17 @@ def get_pibbles():
         })
     
     return {"total": len(coleccion), "data": coleccion}
-
+import random
+@app.get("/pibbles/random")
+def get_random_pibble():
+    # Elegimos un número aleatorio entre 1 y 100
+    numero_aleatorio = random.randint(1, 100)
+    
+    return {
+        "id": numero_aleatorio,
+        "name": f"Pibble Random #{numero_aleatorio}",
+        "url": f"{BASE_URL}/pibble_{numero_aleatorio}.jpg"
+    }
 @app.get("/")
 def home():
     return {"mensaje": "API de Pibbles funcionando. Ve a /pibbles para ver la colección."}
